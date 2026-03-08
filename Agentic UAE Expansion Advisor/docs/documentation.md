@@ -49,7 +49,7 @@ The system follows an Agent + Tools architecture using the Agno framework.
 
 1. Clone the repository
 
-   - git clone https://github.com/yourusername/uae-market-expansion-advisor.git
+   - git clone https://github.com/bassantammarr/uae-market-expansion-advisor.git
 
 2. Navigate to the project
 
