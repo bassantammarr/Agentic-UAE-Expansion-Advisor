@@ -11,31 +11,29 @@ The advisor is implemented using the Agno framework and is accessible through a 
 
 The system follows an Agent + Tools architecture using the Agno framework.
 
-Components:
-
+### Components:
 1. Agent
-The core agent interprets user questions and generates strategic recommendations using an OpenAI language model.
+   - The core agent interprets user questions and generates strategic recommendations using an OpenAI language model.
 
 2. Tools
-The agent can call external tools when additional information is required.
+   - The agent can call external tools when additional information is required.
 
-Tools included in the system:
+### Tools included in the system:
+1. Competitor Finder  
+    - Uses Exa search to identify restaurant competitors in Dubai and Abu Dhabi.
 
-- Competitor Finder  
-  Uses Exa search to identify restaurant competitors in Dubai and Abu Dhabi.
-
-- Competitor Menu Analyzer  
-  Scrapes restaurant websites using Playwright and BeautifulSoup to extract menu text.
+2. Competitor Menu Analyzer  
+    - Scrapes restaurant websites using Playwright and BeautifulSoup to extract menu text.
 
 3. Flow
-
-User Question  
-↓  
-Agent reasoning  
-↓  
-Optional tool usage  
-↓  
-Structured recommendation
+   
+    User Question  
+        ↓  
+    Agent reasoning  
+        ↓  
+    Optional tool usage  
+        ↓  
+    Structured recommendation
 
 ## Technologies Used
 
@@ -51,38 +49,37 @@ Structured recommendation
 
 1. Clone the repository
 
-git clone https://github.com/yourusername/uae-market-expansion-advisor.git
+   - git clone https://github.com/yourusername/uae-market-expansion-advisor.git
 
 2. Navigate to the project
 
-cd uae-market-expansion-advisor
+   - cd uae-market-expansion-advisor
 
 3. Create virtual environment
 
-python -m venv venv
+   - python -m venv venv
 
 4. Activate environment
 
-Windows:
-venv\Scripts\activate
+   - Windows:venv\Scripts\activate
 
-Mac/Linux:
-source venv/bin/activate
+
+   - Mac/Linux:source venv/bin/activate
 
 5. Install dependencies
 
-pip install -r requirements.txt
+   - pip install -r requirements.txt
 
 6. Add API keys
 
-Create a `.env` file:
+   - Create a `.env` file:
 
-OPENAI_API_KEY=your_key_here  
-EXA_API_KEY=your_key_here  
+   - OPENAI_API_KEY=your_key_here  
+   - EXA_API_KEY=your_key_here  
 
 7. Run the project
 
-python agent.py
+   - python agent.py
 
 
 ## How the System Works
