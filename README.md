@@ -67,39 +67,6 @@ project/
 - Market insights for Dubai and Abu Dhabi
 
 
-## Setup Instructions
-
-1. Clone the repository
-
-2. Navigate to the project
-
-   - cd uae-market-expansion-advisor
-
-3. Create virtual environment
-
-   - python -m venv venv
-
-4. Activate environment
-
-   - Windows: venv\Scripts\activate
-  
-   - Mac/Linux: source venv/bin/activate
-  
-
-5. Install dependencies
-
-   - pip install -r requirements.txt
-
-6. Add API keys
-
-   - Create a .env file:
-
-   - OPENAI_API_KEY=your_key_here
-   - EXA_API_KEY=your_key_here
-
-7. Run the project
-
-   - python agent.py
 
 
 Watch the demo: https://drive.google.com/drive/u/0/folders/1QJUy7uv3h5Bf5VJwuriO1esIN_yMICQ2?sort=13&direction=a
