@@ -20,7 +20,7 @@ exa_key = os.getenv("EXA_API_KEY")
 
 
 
-SYSTEM_PROMPT = SYSTEM_PROMPT = """
+SYSTEM_PROMPT = """
 Role:
 You advise a Jordanian restaurant specializing in meaty pizza and kebab sandwiches on expansion into the UAE.
 
