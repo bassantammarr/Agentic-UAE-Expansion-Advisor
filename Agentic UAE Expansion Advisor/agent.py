@@ -109,7 +109,7 @@ model = Groq(
     api_key=os.environ["GROQ_API_KEY"],
     id="openai/gpt-oss-120b",
     temperature=0.3,
-    max_tokens=4096,
+    max_tokens=16384,
     request_params={"reasoning_effort": "low"},
 )
 
