@@ -1,11 +1,23 @@
+import shutil
+
 from playwright.sync_api import sync_playwright
 from bs4 import BeautifulSoup
+
+
+def _launch_browser(p):
+    try:
+        return p.chromium.launch(headless=True)
+    except Exception:
+        system_chromium = shutil.which("chromium") or shutil.which("chromium-browser")
+        if not system_chromium:
+            raise
+        return p.chromium.launch(headless=True, executable_path=system_chromium)
 
 
 def scrape_page(url: str) -> str:
 
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
+        browser = _launch_browser(p)
 
         page = browser.new_page()
 

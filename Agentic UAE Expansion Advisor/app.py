@@ -58,6 +58,11 @@ CSS = """
 html, body, [class*="css"], .stMarkdown, .stChatMessage { font-family: 'Inter', sans-serif; }
 .stApp { background: var(--canvas); }
 #MainMenu, footer, header [data-testid="stToolbar"] { visibility: hidden; }
+/* Keep the "open sidebar" button usable even though the toolbar is hidden */
+[data-testid="stExpandSidebarButton"],
+[data-testid="stSidebarCollapsedControl"] { visibility: visible !important; }
+[data-testid="stExpandSidebarButton"] svg,
+[data-testid="stSidebarCollapsedControl"] svg { color: var(--brand) !important; fill: var(--brand); }
 .block-container { padding-top: 2rem; max-width: 1100px; }
 
 /* Sidebar */

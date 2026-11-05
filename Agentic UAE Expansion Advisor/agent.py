@@ -19,6 +19,14 @@ from agno.db.in_memory import InMemoryDb
 from dotenv import load_dotenv
 load_dotenv()
 
+try:
+    import streamlit as st
+    for _k in ("GROQ_API_KEY", "EXA_API_KEY", "OPENAI_API_KEY"):
+        if _k in st.secrets and not os.getenv(_k):
+            os.environ[_k] = str(st.secrets[_k])
+except Exception:
+    pass
+
 api_key = os.getenv("GROQ_API_KEY")
 exa_key = os.getenv("EXA_API_KEY")
 db = InMemoryDb()
