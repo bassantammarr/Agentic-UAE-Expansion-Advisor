@@ -25,7 +25,13 @@ The system follows an Agent + Tools architecture using the Agno framework.
 2. Competitor Menu Analyzer  
     - Scrapes restaurant websites using Playwright and BeautifulSoup to extract menu text.
 
-3. Flow
+3. Knowledge Base Search (RAG)
+    - Retrieves curated UAE market notes from the `knowledge/` folder (locations, licensing, delivery, pricing, marketing, operations).
+    - Documents are split into chunks by heading and ranked with BM25 (`rag/knowledge_base.py`); no vector database or embedding API is needed.
+    - The agent checks the knowledge base before web search and cites sources as [file name].
+    - Add your own `.md` / `.txt` files to `knowledge/` or upload them from the web UI sidebar.
+
+4. Flow
    
     User Question  
         ↓  
@@ -49,7 +55,7 @@ The system follows an Agent + Tools architecture using the Agno framework.
 
 1. Clone the repository
 
-   - git clone [https://github.com/bassantammarr/uae-market-expansion-advisor.git](https://github.com/bassantammarr/Agentic-UAE-Expansion-Advisor)
+   - git clone https://github.com/yourusername/uae-market-expansion-advisor.git
 
 2. Navigate to the project
 
@@ -68,18 +74,20 @@ The system follows an Agent + Tools architecture using the Agno framework.
 
 5. Install dependencies
 
-   - pip install -r requirements.txt
+   - python -m pip install -r requirements.txt
 
 6. Add API keys
 
    - Create a `.env` file:
 
-   - OPENAI_API_KEY=your_key_here  
+   - GROQ_API_KEY=your_key_here  (free key from console.groq.com)  
    - EXA_API_KEY=your_key_here  
 
 7. Run the project
 
-   - python agent.py
+   - Web UI: python -m streamlit run app.py  (opens http://localhost:8501)
+
+   - Command line: python agent.py
 
 
 ## How the System Works
@@ -146,7 +154,7 @@ Limitations Observed
 - Competitor information depends on search results.
 - Menu scraping may fail for certain websites.
 
-Future Improvements
+## Future Improvements
 
 - Add structured restaurant datasets
 - Add location scoring models

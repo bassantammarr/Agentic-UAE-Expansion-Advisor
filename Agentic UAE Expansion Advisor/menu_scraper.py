@@ -11,7 +11,7 @@ def scrape_page(url: str) -> str:
 
         page.goto(url, timeout=60000)
 
-        page.wait_for_timeout(4000)
+        page.wait_for_load_state("networkidle")
 
         html = page.content()
 

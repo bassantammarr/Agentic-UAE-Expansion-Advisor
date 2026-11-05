@@ -1,23 +1,27 @@
 import os 
 from agno.agent import Agent
-from agno.models.openai import OpenAIChat
+#from agno.models.openai import OpenAIChat
 from agno.tools.exa import ExaTools
 from agno.utils.pprint import pprint_run_response
 # from agno.app.playground import Playground
 #from agno.app.playground import serve_playground_app
 #from menu_scraper import scrape_and_clean
+from agno.models.groq import Groq
 
 from tools.competitor_finder import find_competitors
 from tools.competitor_menu_tool import analyze_competitor_menu
+from tools.knowledge_tool import search_knowledge_base
+from agno.db.in_memory import InMemoryDb
+
 
 
 
 from dotenv import load_dotenv
 load_dotenv()
 
-openai_key = os.getenv("OPENAI_API_KEY")
+api_key = os.getenv("GROQ_API_KEY")
 exa_key = os.getenv("EXA_API_KEY")
-
+db = InMemoryDb()
 
 
 SYSTEM_PROMPT = SYSTEM_PROMPT = """
@@ -65,6 +69,11 @@ Guidelines:
 - Highlight Jordanian authenticity as a brand advantage.
 - Mention marketing opportunities during Ramadan, Eid, and UAE National Day.
 
+Memory usage rules:
+- Remember previous user decisions (e.g., selected city, budget, concept).
+- Build on past responses instead of repeating full analysis.
+- If the user refers to "it" or "that location", infer from conversation history.
+
 Formatting rules:
 
 # Section
@@ -86,12 +95,11 @@ End each response with:
 Top Recommendation:
 (the single most important action)
 """
-#memory = ConversationBufferMemory()
 
 
-model = OpenAIChat(
-    api_key=os.environ["OPENAI_API_KEY"],
-    id="gpt-4.1-mini",
+model = Groq(
+    api_key=os.environ["GROQ_API_KEY"],
+    id="openai/gpt-oss-120b",
     temperature=0.3,
     max_tokens=800
 )
@@ -102,13 +110,17 @@ agent = Agent(
     name="UAE Market Expansion Advisor",
     description=SYSTEM_PROMPT,
     model=model,
-    tools=[ExaTools( num_results=2,api_key=os.getenv("EXA_API_KEY")),
+    tools=[search_knowledge_base,
+           ExaTools(num_results=2, text_length_limit=500, livecrawl="fallback", api_key=os.getenv("EXA_API_KEY")),
            find_competitors,
             analyze_competitor_menu
            ],
 
 
-    #memory=memory,
+    db=db,
+    tool_call_limit=5,
+    add_history_to_context=True,
+    num_history_runs=5,
 
 
 
@@ -116,7 +128,9 @@ agent = Agent(
         "Keep responses under 500 words unless deeper analysis is requested.",
         "Use clear headings and bullet points.",
         "Provide practical recommendations rather than generic explanations.",
-        "Avoid repeating information across sections."
+        "Avoid repeating information across sections.",
+        "Always call search_knowledge_base first for UAE market facts; use web search only for gaps or very recent data.",
+        "When you use knowledge base content, cite it inline as [source file]."
     ],
 
     markdown=True,
@@ -153,3 +167,40 @@ if __name__ == "__main__":
 
 if __name__ == "__main__":
     serve_playground_app(app, reload=True)'''
+
+
+
+'''market_agent = Agent(
+    name="Market Research Agent",
+    model=model,
+    tools=[ExaTools(num_results=3), find_competitors],
+    instructions=[
+        "Focus only on competitors and market trends",
+        "Return concise insights"
+    ],
+)'''
+
+
+
+
+
+'''menu_agent = Agent(
+    name="Menu Optimization Agent",
+    model=model,
+    tools=[analyze_competitor_menu],
+    instructions=[
+        "Analyze menus and suggest improvements",
+        "Focus on pricing and items"
+    ],
+)'''
+
+
+
+'''strategy_agent = Agent(
+    name="Strategy Agent",
+    model=model,
+    instructions=[
+        "You are the final decision maker",
+        "Combine insights from other agents",
+    ],
+)'''

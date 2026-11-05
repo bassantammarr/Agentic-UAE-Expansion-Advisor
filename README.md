@@ -4,6 +4,8 @@ An Agentic AI system that helps a Jordanian restaurant specializing in meaty piz
 The system uses LLM reasoning + web tools to analyze competitors, menus, pricing, and market opportunities.
 
 ## Features
+- Knowledge base retrieval (RAG) over curated UAE market notes
+
 - Competitor discovery using Exa search
 
 - Restaurant menu scraping and analysis
@@ -44,7 +46,13 @@ project/
 ├── agent.py
 ├── tools/
 │   ├── competitor_finder.py
-│   └── competitor_menu_tool.py
+│   ├── competitor_menu_tool.py
+│   └── knowledge_tool.py
+│
+├── rag/
+│   └── knowledge_base.py
+├── knowledge/          # RAG documents (.md / .txt)
+├── app.py              # Streamlit web UI
 │
 ├── menu_scraper.py
 ├── text_cleaner.py
@@ -67,6 +75,43 @@ project/
 - Market insights for Dubai and Abu Dhabi
 
 
+## Setup Instructions
+
+1. Clone the repository
+
+   - git clone https://github.com/yourusername/uae-market-expansion-advisor.git
+
+2. Navigate to the project
+
+   - cd uae-market-expansion-advisor
+
+3. Create virtual environment
+
+   - python -m venv venv
+
+4. Activate environment
+
+   - Windows: venv\Scripts\activate
+  
+   - Mac/Linux: source venv/bin/activate
+  
+
+5. Install dependencies
+
+   - python -m pip install -r requirements.txt
+
+6. Add API keys
+
+   - Create a .env file:
+
+   - GROQ_API_KEY=your_key_here  (free key from console.groq.com)
+   - EXA_API_KEY=your_key_here
+
+7. Run the project
+
+   - Web UI: python -m streamlit run app.py  (opens http://localhost:8501)
+
+   - Command line: python agent.py
 
 
 Watch the demo: https://drive.google.com/drive/u/0/folders/1QJUy7uv3h5Bf5VJwuriO1esIN_yMICQ2?sort=13&direction=a
