@@ -158,10 +158,12 @@ header[data-testid="stHeader"], #MainMenu, footer,
 .st-key-mapcard [data-testid="stBaseButton-pillsActive"] {
     border-radius: 999px; font-size: 0.78rem; padding: 0.3rem 0.8rem; min-height: 0;
 }
-.st-key-mapcard [data-testid="stBaseButton-pills"] { background: transparent; border: 1px solid rgba(255,255,255,0.28); color: var(--on-plum); }
-.st-key-mapcard [data-testid="stBaseButton-pills"]:hover { border-color: var(--amber); color: var(--amber); }
-.st-key-mapcard [data-testid="stBaseButton-pillsActive"] { background: var(--amber); border: 1px solid var(--amber); color: var(--plum); }
-.st-key-mapcard [data-testid="stBaseButton-pillsActive"] p, .st-key-mapcard [data-testid="stBaseButton-pillsActive"] span { color: var(--plum); }
+.st-key-mapcard [data-testid="stBaseButton-pills"] { background: transparent !important; border: 1px solid rgba(255,255,255,0.28) !important; color: var(--on-plum) !important; }
+.st-key-mapcard [data-testid="stBaseButton-pills"] p, .st-key-mapcard [data-testid="stBaseButton-pills"] span { color: var(--on-plum) !important; }
+.st-key-mapcard [data-testid="stBaseButton-pills"]:hover { border-color: var(--amber) !important; }
+.st-key-mapcard [data-testid="stBaseButton-pills"]:hover p, .st-key-mapcard [data-testid="stBaseButton-pills"]:hover span { color: var(--amber) !important; }
+.st-key-mapcard [data-testid="stBaseButton-pillsActive"] { background: var(--amber) !important; border: 1px solid var(--amber) !important; color: var(--plum) !important; }
+.st-key-mapcard [data-testid="stBaseButton-pillsActive"] p, .st-key-mapcard [data-testid="stBaseButton-pillsActive"] span { color: var(--plum) !important; }
 
 /* ---------- Topic cards ---------- */
 .section-row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1rem; }
